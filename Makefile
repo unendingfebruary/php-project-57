@@ -1,10 +1,12 @@
 PORT ?= 8000
 start:
 	php artisan serve --host 0.0.0.0 --port $(PORT)
-	npm run dev
 
 start-local:
 	php artisan serve
+
+start-front:
+	npm run dev
 
 install:
 	composer install
