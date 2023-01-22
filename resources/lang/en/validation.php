@@ -158,8 +158,10 @@ return [
     */
 
     'custom' => [
-        'attribute-name' => [
-            'rule-name' => 'custom-message',
+        'task-status' => [
+            'name' => [
+                'unique' => 'A status with the same name already exists.',
+            ]
         ],
     ],
 

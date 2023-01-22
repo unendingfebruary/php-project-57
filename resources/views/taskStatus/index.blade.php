@@ -5,12 +5,12 @@
     <div class="grid col-span-full">
         @include('flash::message')
 
-        <h1 class="mb-5">Статусы</h1>
+        <h1 class="mb-5">{{ __('views.task-status.index.title') }}</h1>
 
         @can('create', App\Models\TaskStatus::class)
             <div>
                 <x-primary-link :href="route('task_statuses.create')">
-                    {{ __('Создать статус') }}
+                    {{ __('views.task-status.index.create') }}
                 </x-primary-link>
             </div>
         @endcan
@@ -18,11 +18,11 @@
         <table class="mt-4">
             <thead class="border-b-2 border-solid border-black text-left">
                 <tr>
-                    <th>ID</th>
-                    <th>Имя</th>
-                    <th>Дата создания</th>
+                    <th>{{ __('ID') }}</th>
+                    <th>{{ __('views.task-status.common.name') }}</th>
+                    <th>{{ __('views.task-status.index.date') }}</th>
                     @canany(['update', 'delete'], App\Models\TaskStatus::class)
-                        <th>Действия</th>
+                        <th>{{ __('views.task-status.index.actions') }}</th>
                     @endcan
                 </tr>
             </thead>
@@ -34,13 +34,13 @@
                     <td>
                         @can('delete', App\Models\TaskStatus::class)
                             <x-delete-link :href="route('task_statuses.destroy', $status)">
-                                {{ __('Удалить') }}
+                                {{ __('views.task-status.index.destroy') }}
                             </x-delete-link>
                         @endcan
 
                         @can('update', App\Models\TaskStatus::class)
                             <x-update-link :href="route('task_statuses.edit', $status)">
-                                {{ __('Изменить') }}
+                                {{ __('views.task-status.index.edit') }}
                             </x-update-link>
                         @endcan
                     </td>

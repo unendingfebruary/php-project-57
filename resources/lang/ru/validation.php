@@ -158,8 +158,10 @@ return [
     */
 
     'custom' => [
-        'attribute-name' => [
-            'rule-name' => 'custom-message',
+        'task-status' => [
+            'name' => [
+                'unique' => 'Статус с таким именем уже существует.',
+            ]
         ],
     ],
 
@@ -174,8 +176,6 @@ return [
     |
     */
 
-    'attributes' => [
-        'name' => 'имя',
-    ],
+    'attributes' => [],
 
 ];

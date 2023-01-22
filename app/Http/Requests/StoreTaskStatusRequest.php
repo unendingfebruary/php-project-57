@@ -25,7 +25,7 @@ class StoreTaskStatusRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'name.unique' => 'Статус с таким именем уже существует.',
+            'name.unique' => __('validation.custom.task-status.name.unique'),
         ];
     }
 }
