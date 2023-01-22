@@ -9,3 +9,15 @@ h1 {
 h2 {
     font-size: 2rem;
 }
+
+.alert {
+    padding: 1rem 1rem;
+    border: 1px solid transparent;
+    border-radius: 0.25rem;
+}
+
+.alert-success {
+    color: #0f5132;
+    background-color: #d1e7dd;
+    border-color: #badbcc;
+}

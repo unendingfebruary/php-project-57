@@ -7,22 +7,22 @@
 
             <div class="flex items-center lg:order-2">
                 @auth
-                    <x-auth-nav-link :href="route('logout')"
+                    <x-primary-link :href="route('logout')"
                                      onclick="event.preventDefault();
                                      document.getElementById('logout-form').submit();">
                         {{ __('Выход') }}
-                    </x-auth-nav-link>
+                    </x-primary-link>
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                         @csrf
                     </form>
                 @else
-                    <x-auth-nav-link :href="route('login')">
+                    <x-primary-link :href="route('login')">
                         {{ __('Вход') }}
-                    </x-auth-nav-link>
+                    </x-primary-link>
 
-                    <x-auth-nav-link :href="route('register')" class="ml-2">
+                    <x-primary-link :href="route('register')" class="ml-2">
                         {{ __('Регистрация') }}
-                    </x-auth-nav-link>
+                    </x-primary-link>
                 @endauth
             </div>
 
@@ -34,7 +34,7 @@
                         </x-nav-link>
                     </li>
                     <li>
-                        <x-nav-link :href="route('welcome')" :active="request()->routeIs('statuses')">
+                        <x-nav-link :href="route('task_statuses.index')" :active="request()->routeIs('task_statuses.index')">
                             {{ __('Статусы') }}
                         </x-nav-link>
                     </li>
