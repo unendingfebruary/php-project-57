@@ -5,12 +5,12 @@
     <div class="grid col-span-full">
         @include('flash::message')
 
-        <h1 class="mb-5">{{ __('views.task-status.index.title') }}</h1>
+        <h1 class="mb-5">{{ __('status.index.title') }}</h1>
 
         @can('create', App\Models\TaskStatus::class)
             <div>
                 <x-primary-link :href="route('task_statuses.create')">
-                    {{ __('views.task-status.index.create') }}
+                    {{ __('status.index.button') }}
                 </x-primary-link>
             </div>
         @endcan
@@ -19,10 +19,10 @@
             <thead class="border-b-2 border-solid border-black text-left">
                 <tr>
                     <th>{{ __('ID') }}</th>
-                    <th>{{ __('views.task-status.common.name') }}</th>
-                    <th>{{ __('views.task-status.index.date') }}</th>
+                    <th>{{ __('status.common.name') }}</th>
+                    <th>{{ __('status.common.date') }}</th>
                     @canany(['update', 'delete'], App\Models\TaskStatus::class)
-                        <th>{{ __('views.task-status.index.actions') }}</th>
+                        <th>{{ __('status.common.actions') }}</th>
                     @endcan
                 </tr>
             </thead>
@@ -34,13 +34,13 @@
                     <td>
                         @can('delete', App\Models\TaskStatus::class)
                             <x-delete-link :href="route('task_statuses.destroy', $status)">
-                                {{ __('views.task-status.index.destroy') }}
+                                {{ __('status.common.destroy') }}
                             </x-delete-link>
                         @endcan
 
                         @can('update', App\Models\TaskStatus::class)
                             <x-update-link :href="route('task_statuses.edit', $status)">
-                                {{ __('views.task-status.index.edit') }}
+                                {{ __('status.common.edit') }}
                             </x-update-link>
                         @endcan
                     </td>

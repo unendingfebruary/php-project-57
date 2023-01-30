@@ -5,44 +5,32 @@ namespace App\Http\Controllers;
 use App\Http\Requests\TaskStatusStoreRequest;
 use App\Http\Requests\TaskStatusUpdateRequest;
 use App\Models\TaskStatus;
-use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 
 class TaskStatusController extends Controller
 {
-    /**
-     * @return View
-     */
+    public function __construct()
+    {
+        $this->authorizeResource(TaskStatus::class);
+    }
+
     public function index(): View
     {
         return view('taskStatus.index', [
-            'taskStatuses' => TaskStatus::all(),
+            'taskStatuses' => TaskStatus::all()->sortBy('id'),
         ]);
     }
 
-    /**
-     * @return View
-     * @throws AuthorizationException
-     */
     public function create(): View
     {
-        $this->authorize('create', TaskStatus::class);
-
         return view('taskStatus.create');
     }
 
-    /**
-     * @param TaskStatusStoreRequest $request
-     * @return RedirectResponse
-     * @throws AuthorizationException
-     */
     public function store(TaskStatusStoreRequest $request): RedirectResponse
     {
-        $this->authorize('create', TaskStatus::class);
-
         $taskStatus = new TaskStatus();
-        $taskStatus->name = $request->name;
+        $taskStatus->fill($request->validated());
         $taskStatus->save();
 
         flash(__('flash.task-status.store'))->success();
@@ -50,31 +38,16 @@ class TaskStatusController extends Controller
         return redirect()->route('task_statuses.index');
     }
 
-    /**
-     * @param TaskStatus $taskStatus
-     * @return View
-     * @throws AuthorizationException
-     */
     public function edit(TaskStatus $taskStatus): View
     {
-        $this->authorize('update', TaskStatus::class);
-
         return view('taskStatus.edit', [
             'taskStatus' => $taskStatus,
         ]);
     }
 
-    /**
-     * @param TaskStatusUpdateRequest $request
-     * @param TaskStatus $taskStatus
-     * @return RedirectResponse
-     * @throws AuthorizationException
-     */
     public function update(TaskStatusUpdateRequest $request, TaskStatus $taskStatus): RedirectResponse
     {
-        $this->authorize('update', TaskStatus::class);
-
-        $taskStatus->name = $request->name;
+        $taskStatus->fill($request->validated());
         $taskStatus->save();
 
         flash(__('flash.task-status.update'))->success();
@@ -82,18 +55,14 @@ class TaskStatusController extends Controller
         return redirect()->route('task_statuses.index');
     }
 
-    /**
-     * @param TaskStatus $taskStatus
-     * @return RedirectResponse
-     * @throws AuthorizationException
-     */
     public function destroy(TaskStatus $taskStatus): RedirectResponse
     {
-        $this->authorize('delete', TaskStatus::class);
-
-        $taskStatus->delete();
-
-        flash(__('flash.task-status.destroy'))->success();
+        if ($taskStatus->tasks()->exists()) {
+            flash(__('flash.task-status.destroy_error'))->error();
+        } else {
+            $taskStatus->delete();
+            flash(__('flash.task-status.destroy_success'))->success();
+        }
 
         return redirect()->route('task_statuses.index');
     }

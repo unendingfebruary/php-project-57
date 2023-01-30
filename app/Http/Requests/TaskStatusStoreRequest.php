@@ -9,9 +9,6 @@ use Illuminate\Foundation\Http\FormRequest;
  */
 class TaskStatusStoreRequest extends FormRequest
 {
-    /**
-     * @return array<string, mixed>
-     */
     public function rules(): array
     {
         return [
@@ -19,13 +16,10 @@ class TaskStatusStoreRequest extends FormRequest
         ];
     }
 
-    /**
-     * @return string[]
-     */
-    public function messages(): array
+    public function attributes(): array
     {
         return [
-            'name.unique' => __('validation.custom.task-status.name.unique'),
+            'name' => __('status.attributes.name'),
         ];
     }
 }

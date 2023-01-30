@@ -11,9 +11,6 @@ use Illuminate\Validation\Rule;
  */
 class TaskStatusUpdateRequest extends FormRequest
 {
-    /**
-     * @return array[]
-     */
     public function rules(): array
     {
         /** @var TaskStatus $status */
@@ -28,13 +25,10 @@ class TaskStatusUpdateRequest extends FormRequest
         ];
     }
 
-    /**
-     * @return string[]
-     */
-    public function messages(): array
+    public function attributes(): array
     {
         return [
-            'name.unique' => __('validation.custom.task-status.name.unique'),
+            'name' => __('status.attributes.name'),
         ];
     }
 }

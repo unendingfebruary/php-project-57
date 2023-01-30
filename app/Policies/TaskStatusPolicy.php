@@ -10,30 +10,38 @@ class TaskStatusPolicy
 {
     use HandlesAuthorization;
 
-    /**
-     * @param User $user
-     * @return bool
-     */
-    public function create(User $user): bool
+    public function viewAny(User $user = null): bool
+    {
+        return true;
+    }
+
+    public function view(User $user = null): bool
+    {
+        return true;
+    }
+
+    public function create(): bool
     {
         return Auth::check();
     }
 
-    /**
-     * @param User $user
-     * @return bool
-     */
-    public function update(User $user): bool
+    public function update(): bool
     {
         return Auth::check();
     }
 
-    /**
-     * @param User $user
-     * @return bool
-     */
-    public function delete(User $user): bool
+    public function delete(): bool
     {
         return Auth::check();
+    }
+
+    public function restore(): bool
+    {
+        return false;
+    }
+
+    public function forceDelete(): bool
+    {
+        return false;
     }
 }

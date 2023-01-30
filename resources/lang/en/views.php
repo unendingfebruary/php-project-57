@@ -24,26 +24,5 @@ return [
         'login' => 'Log in',
         'register' => 'Register',
     ],
-    'task-status' => [
-        'common' => [
-            'name' => 'Name',
-        ],
-        'index' => [
-            'title' => 'Statuses',
-            'date' => 'Creation date',
-            'actions' => 'Actions',
-            'create' => 'Create status',
-            'edit' => 'Edit',
-            'destroy' => 'Delete',
-        ],
-        'create' => [
-            'title' => 'Create status',
-            'store' => 'Create',
-        ],
-        'edit' => [
-            'title' => 'Status change',
-            'update' => 'Update',
-        ]
-    ],
 
 ];

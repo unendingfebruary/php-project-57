@@ -5,7 +5,8 @@ return [
     'task-status' => [
         'store' => 'Status has been created successfully.',
         'update' => 'Status has been updated successfully.',
-        'destroy' => 'Status has been deleted successfully.',
+        'destroy_success' => 'Status has been deleted successfully.',
+        'destroy_error' => 'Failed to delete status.',
     ],
     'task' => [
         'store' => 'Task has been created successfully.',
