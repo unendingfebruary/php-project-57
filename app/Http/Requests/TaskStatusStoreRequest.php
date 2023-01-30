@@ -2,29 +2,20 @@
 
 namespace App\Http\Requests;
 
-use App\Models\TaskStatus;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rule;
 
 /**
  * @property-read string $name
  */
-class UpdateTaskStatusRequest extends FormRequest
+class TaskStatusStoreRequest extends FormRequest
 {
     /**
-     * @return array[]
+     * @return array<string, mixed>
      */
     public function rules(): array
     {
-        /** @var TaskStatus $status */
-        $status = $this->route('task_status');
-
         return [
-            'name' => [
-                'required',
-                Rule::unique('task_statuses')->ignore($status->id),
-                'max:100'
-            ],
+            'name' => 'required|unique:task_statuses|max:100',
         ];
     }
 

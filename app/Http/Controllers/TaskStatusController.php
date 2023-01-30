@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreTaskStatusRequest;
-use App\Http\Requests\UpdateTaskStatusRequest;
+use App\Http\Requests\TaskStatusStoreRequest;
+use App\Http\Requests\TaskStatusUpdateRequest;
 use App\Models\TaskStatus;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Contracts\View\View;
@@ -33,11 +33,11 @@ class TaskStatusController extends Controller
     }
 
     /**
-     * @param StoreTaskStatusRequest $request
+     * @param TaskStatusStoreRequest $request
      * @return RedirectResponse
      * @throws AuthorizationException
      */
-    public function store(StoreTaskStatusRequest $request): RedirectResponse
+    public function store(TaskStatusStoreRequest $request): RedirectResponse
     {
         $this->authorize('create', TaskStatus::class);
 
@@ -65,12 +65,12 @@ class TaskStatusController extends Controller
     }
 
     /**
-     * @param UpdateTaskStatusRequest $request
+     * @param TaskStatusUpdateRequest $request
      * @param TaskStatus $taskStatus
      * @return RedirectResponse
      * @throws AuthorizationException
      */
-    public function update(UpdateTaskStatusRequest $request, TaskStatus $taskStatus): RedirectResponse
+    public function update(TaskStatusUpdateRequest $request, TaskStatus $taskStatus): RedirectResponse
     {
         $this->authorize('update', TaskStatus::class);
 
