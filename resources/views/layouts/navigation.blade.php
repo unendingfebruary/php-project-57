@@ -31,7 +31,7 @@
             <div class="items-center justify-between hidden w-full lg:flex lg:w-auto lg:order-1">
                 <ul class="flex flex-col mt-4 font-medium lg:flex-row lg:space-x-8 lg:mt-0">
                     <li>
-                        <x-nav-link :href="route('welcome')" :active="request()->routeIs('tasks')">
+                        <x-nav-link :href="route('tasks.index')" :active="request()->routeIs('tasks.index')">
                             {{ __('views.nav.tasks') }}
                         </x-nav-link>
                     </li>

@@ -158,10 +158,12 @@ return [
     */
 
     'custom' => [
-        'task-status' => [
-            'name' => [
-                'unique' => 'A status with the same name already exists.',
-            ]
+        'name' => [
+            'unique' => 'A :attribute with the same name already exists.',
+            'required' => 'This is a required field.',
+        ],
+        'status_id' => [
+            'required' => 'This is a required field.',
         ],
     ],
 
