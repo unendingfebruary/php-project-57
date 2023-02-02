@@ -41,7 +41,7 @@
                         </x-nav-link>
                     </li>
                     <li>
-                        <x-nav-link :href="route('welcome')" :active="request()->routeIs('labels')">
+                        <x-nav-link :href="route('labels.index')" :active="request()->routeIs('labels.index')">
                             {{ __('views.nav.labels') }}
                         </x-nav-link>
                     </li>

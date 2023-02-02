@@ -12,6 +12,12 @@ return [
         'store' => 'Task has been created successfully.',
         'update' => 'Task has been updated successfully.',
         'destroy' => 'Task has been deleted successfully.',
-    ]
+    ],
+    'label' => [
+        'store' => 'Label has been created successfully.',
+        'update' => 'Label has been updated successfully.',
+        'destroy_success' => 'Label has been deleted successfully.',
+        'destroy_error' => 'Failed to delete label.',
+    ],
 
 ];
