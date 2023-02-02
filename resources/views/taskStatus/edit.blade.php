@@ -12,7 +12,7 @@
                 <div class="flex flex-col">
                     <div class="mt-2">
                         <x-input-label for="name" :value="__('status.common.name')" />
-                        <x-text-input id="name" class="rounded border-gray-300 w-1/3" type="text" name="name" :value="old('name') ?: $taskStatus->name" required />
+                        <x-text-input id="name" class="rounded border-gray-300 w-1/3" type="text" name="name" :value="old('name') ?: $taskStatus->name" />
                         <x-input-error :messages="$errors->get('name')" class="mt-2" />
                     </div>
 
