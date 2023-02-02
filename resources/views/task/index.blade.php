@@ -9,30 +9,33 @@
 
             <div class="w-full flex items-center">
                 <div>
-                    <form method="GET" action="{{ route('tasks.index') }}" accept-charset="UTF-8">
-                        <div class="flex">
-                            <div>
-                                <x-filter-select name="filter[status_id]">
-                                    <option selected="selected" value="">{{ __('task.common.status') }}</option>
-                                </x-filter-select>
-                            </div>
-                            <div>
-                                <x-filter-select class="ml-2" name="filter[created_by_id]">
-                                    <option selected="selected" value="">{{ __('task.common.creator') }}</option>
-                                </x-filter-select>
-                            </div>
-                            <div>
-                                <x-filter-select class="ml-2" name="filter[assigned_to_id]">
-                                    <option selected="selected" value="">{{ __('task.common.executor') }}</option>
-                                </x-filter-select>
-                            </div>
-                            <div>
-                                <x-primary-button class="ml-2">
-                                    {{ __('task.filter.button') }}
-                                </x-primary-button>
-                            </div>
+                    {{ Form::open(['url' => route('tasks.index'), 'method' => 'GET']) }}
+                    <div class="flex">
+                        <div>
+                            {{ Form::select('filter[status_id]', $statuses, request()->input('filter.status_id'), [
+                                'class' => 'rounded border-gray-300 focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50',
+                                'placeholder' =>  __('task.common.status')
+                            ]) }}
                         </div>
-                    </form>
+                        <div>
+                            {{ Form::select('filter[created_by_id]', $users, request()->input('filter.created_by_id'), [
+                                'class' => 'rounded border-gray-300 focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50 ml-2',
+                                'placeholder' =>  __('task.common.creator')
+                            ]) }}
+                        </div>
+                        <div>
+                            {{ Form::select('filter[assigned_to_id]', $users, request()->input('filter.assigned_to_id'), [
+                                'class' => 'rounded border-gray-300 focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50 ml-2',
+                                'placeholder' =>  __('task.common.executor')
+                            ]) }}
+                        </div>
+                        <div>
+                            <x-primary-button class="ml-2">
+                                {{ __('task.filter.button') }}
+                            </x-primary-button>
+                        </div>
+                    </div>
+                    {{ Form::close() }}
                 </div>
 
                 @can('create', App\Models\Task::class)
