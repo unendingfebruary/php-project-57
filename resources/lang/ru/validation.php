@@ -159,7 +159,7 @@ return [
 
     'custom' => [
         'name' => [
-            'unique' => ':attribute c таким именем уже существует.',
+            'unique' => ':attribute с таким именем уже существует.',
             'required' => 'Это обязательное поле.'
         ],
         'status_id' => [
