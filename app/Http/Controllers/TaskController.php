@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\TaskStoreRequest;
 use App\Http\Requests\TaskUpdateRequest;
+use App\Models\Label;
 use App\Models\Task;
 use App\Models\TaskStatus;
 use App\Models\User;
@@ -30,6 +31,7 @@ class TaskController extends Controller
         return view('task.create', [
             'statuses' => TaskStatus::all()->sortBy('id')->pluck('name', 'id'),
             'executors' => User::all()->sortBy('id')->pluck('name', 'id'),
+            'labels' => Label::all()->sortBy('id')->pluck('name', 'id'),
         ]);
     }
 
@@ -38,9 +40,13 @@ class TaskController extends Controller
         /** @var User $user */
         $user = Auth::user();
 
-        $user->createdTasks()->save(
+        /** @var Task $task */
+        $task = $user->createdTasks()->save(
             new Task($request->validated())
         );
+
+        $labelsIds = collect($request->input('labels'))->filter(fn($label) => $label !== null);
+        $task->labels()->attach($labelsIds);
 
         flash(__('flash.task.store'))->success();
 
@@ -60,6 +66,7 @@ class TaskController extends Controller
             'task' => $task,
             'statuses' => TaskStatus::all()->sortBy('id')->pluck('name', 'id'),
             'executors' => User::all()->sortBy('id')->pluck('name', 'id'),
+            'labels' => Label::all()->sortBy('id')->pluck('name', 'id'),
         ]);
     }
 
@@ -68,6 +75,9 @@ class TaskController extends Controller
         $task->fill($request->validated());
         $task->save();
 
+        $labelsIds = collect($request->input('labels'))->filter(fn($label) => $label !== null);
+        $task->labels()->sync($labelsIds);
+
         flash(__('flash.task.update'))->success();
 
         return redirect()->route('tasks.index');
@@ -75,6 +85,7 @@ class TaskController extends Controller
 
     public function destroy(Task $task): RedirectResponse
     {
+        $task->labels()->detach();
         $task->delete();
 
         flash(__('flash.task.destroy'))->success();

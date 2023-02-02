@@ -40,6 +40,16 @@
                     </div>
 
                     <div class="mt-2">
+                        <x-input-label for="labels" :value="__('task.common.labels')" />
+                        {{ Form::select('labels[]', $labels, null, [
+                            'class' => 'rounded border-gray-300 focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50 w-1/3',
+                            'id' => 'labels',
+                            'multiple' => 'multiple',
+                            'placeholder' => '',
+                        ]) }}
+                    </div>
+
+                    <div class="mt-2">
                         <x-primary-button>
                             {{ __('task.create.button') }}
                         </x-primary-button>
