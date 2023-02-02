@@ -11,7 +11,7 @@ return [
         'name' => 'Name',
         'creator' => 'Creator',
         'executor' => 'Executor',
-        'date' => 'Create date',
+        'date' => 'Creation date',
         'description' => 'Description',
         'actions' => 'Actions',
         'edit' => 'Edit',

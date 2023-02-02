@@ -13,13 +13,13 @@
                         <x-input-error :messages="$errors->get('name')" class="mt-2" />
                     </div>
 
-                    <div class="mt-3">
-                        <x-input-label for="name" :value="__('task.common.description')" />
+                    <div class="mt-2">
+                        <x-input-label for="description" :value="__('task.common.description')" />
                         <x-textarea id="description" class="rounded w-1/3 h-32" cols="50" rows="10" name="description">{{ old('description') }}</x-textarea>
                         <x-input-error :messages="$errors->get('description')" class="mt-2" />
                     </div>
 
-                    <div class="mt-3">
+                    <div class="mt-2">
                         <x-input-label for="status_id" :value="__('task.common.status')" />
                         {{ Form::select('status_id', $statuses, null, [
                             'class' => 'rounded border-gray-300 focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50 w-1/3',
@@ -29,7 +29,7 @@
                         <x-input-error :messages="$errors->get('status_id')" class="mt-2" />
                     </div>
 
-                    <div class="mt-3">
+                    <div class="mt-2">
                         <x-input-label for="assigned_to_id" :value="__('task.common.executor')" />
                         {{ Form::select('assigned_to_id', $executors, null, [
                             'class' => 'rounded border-gray-300 focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50 w-1/3',
@@ -39,7 +39,7 @@
                         <x-input-error :messages="$errors->get('assigned_to_id')" class="mt-2" />
                     </div>
 
-                    <div class="mt-3">
+                    <div class="mt-2">
                         <x-primary-button>
                             {{ __('task.create.button') }}
                         </x-primary-button>
