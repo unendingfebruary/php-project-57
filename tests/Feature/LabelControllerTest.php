@@ -12,13 +12,13 @@ class LabelControllerTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_label_index_page_is_displayed()
+    public function testLabelIndexPageIsDisplayed()
     {
         $response = $this->get(route('labels.index'));
         $response->assertOk();
     }
 
-    public function test_label_create_page_is_displayed_only_for_authorized_users()
+    public function testLabelCreatePageIsDisplayedOnlyForAuthorizedUsers()
     {
         $user = User::factory()->create();
         $route = route('labels.create');
@@ -32,7 +32,7 @@ class LabelControllerTest extends TestCase
         $response->assertOk();
     }
 
-    public function test_label_can_be_created()
+    public function testLabelCanBeCreated()
     {
         $user = User::factory()->create();
         $labelData = Label::factory()->make()->only('name', 'description');
@@ -45,7 +45,7 @@ class LabelControllerTest extends TestCase
         $this->assertDatabaseHas('labels', $labelData);
     }
 
-    public function test_label_edit_page_is_displayed_only_for_authorized_users()
+    public function testLabelEditPageIsDisplayedOnlyForAuthorizedUsers()
     {
         $user = User::factory()->create();
         $label = Label::factory()->create();
@@ -60,7 +60,7 @@ class LabelControllerTest extends TestCase
         $response->assertOk();
     }
 
-    public function test_label_can_be_updated()
+    public function testLabelCanBeUpdated()
     {
         $user = User::factory()->create();
         $label = Label::factory()->create();
@@ -74,7 +74,7 @@ class LabelControllerTest extends TestCase
         $this->assertDatabaseHas('labels', $labelUpdateData);
     }
 
-    public function test_label_can_be_deleted_if_no_tasks()
+    public function testLabelCanBeDeletedIfNoTasks()
     {
         $user = User::factory()->create();
         $label = Label::factory()->create();
@@ -96,6 +96,5 @@ class LabelControllerTest extends TestCase
 
         $response2->assertRedirect(route('labels.index'));
         $this->assertDatabaseHas('labels', $label2->only('id'));
-
     }
 }

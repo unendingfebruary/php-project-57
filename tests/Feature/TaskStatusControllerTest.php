@@ -12,13 +12,13 @@ class TaskStatusControllerTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_status_index_page_is_displayed()
+    public function testStatusIndexPageIsDisplayed()
     {
         $response = $this->get(route('task_statuses.index'));
         $response->assertOk();
     }
 
-    public function test_status_create_page_is_displayed_only_for_authorized_users()
+    public function testStatusCreatePageIsDisplayedOnlyForAuthorizedUsers()
     {
         $user = User::factory()->create();
         $route = route('task_statuses.create');
@@ -32,7 +32,7 @@ class TaskStatusControllerTest extends TestCase
         $response->assertOk();
     }
 
-    public function test_status_can_be_created()
+    public function testStatusCanBeCreated()
     {
         $user = User::factory()->create();
         $statusData = TaskStatus::factory()->make()->only('name');
@@ -45,7 +45,7 @@ class TaskStatusControllerTest extends TestCase
         $this->assertDatabaseHas('task_statuses', $statusData);
     }
 
-    public function test_status_edit_page_is_displayed_only_for_authorized_users()
+    public function testStatusEditPageIsDisplayedOnlyForAuthorizedUsers()
     {
         $user = User::factory()->create();
         $status = TaskStatus::factory()->create();
@@ -60,7 +60,7 @@ class TaskStatusControllerTest extends TestCase
         $response->assertOk();
     }
 
-    public function test_status_can_be_updated()
+    public function testStatusCanBeUpdated()
     {
         $user = User::factory()->create();
         $status = TaskStatus::factory()->create();
@@ -74,7 +74,7 @@ class TaskStatusControllerTest extends TestCase
         $this->assertDatabaseHas('task_statuses', $statusUpdateData);
     }
 
-    public function test_status_can_be_deleted_if_no_tasks()
+    public function testStatusCanBeDeletedIfNoTasks()
     {
         $user = User::factory()->create();
         $status = TaskStatus::factory()->create();
@@ -96,6 +96,5 @@ class TaskStatusControllerTest extends TestCase
 
         $response2->assertRedirect(route('task_statuses.index'));
         $this->assertDatabaseHas('task_statuses', $status2->only('id'));
-
     }
 }

@@ -11,13 +11,13 @@ class TaskControllerTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_task_index_page_is_displayed()
+    public function testTaskIndexPageIsDisplayed()
     {
         $response = $this->get(route('tasks.index'));
         $response->assertOk();
     }
 
-    public function test_task_create_page_is_displayed_only_for_authorized_users()
+    public function testTaskCreatePageIsDisplayedOnlyForAuthorizedUsers()
     {
         $user = User::factory()->create();
         $route = route('tasks.create');
@@ -31,7 +31,7 @@ class TaskControllerTest extends TestCase
         $response->assertOk();
     }
 
-    public function test_task_can_be_created()
+    public function testTaskCanBeCreated()
     {
         $user = User::factory()->create();
         $taskData = Task::factory()->make()->only('name', 'status_id');
@@ -44,14 +44,14 @@ class TaskControllerTest extends TestCase
         $this->assertDatabaseHas('tasks', $taskData);
     }
 
-    public function test_task_show_page_is_displayed()
+    public function testTaskShowPageIsDisplayed()
     {
         $task = Task::factory()->create();
         $response = $this->get(route('tasks.show', $task));
         $response->assertOk();
     }
 
-    public function test_status_edit_page_is_displayed_only_for_authorized_users()
+    public function testStatusEditPageIsDisplayedOnlyForAuthorizedUsers()
     {
         $user = User::factory()->create();
         $task = Task::factory()->create();
@@ -66,7 +66,7 @@ class TaskControllerTest extends TestCase
         $response->assertOk();
     }
 
-    public function test_status_can_be_updated()
+    public function testStatusCanBeUpdated()
     {
         $user = User::factory()->create();
         $task = Task::factory()->create();
@@ -80,7 +80,7 @@ class TaskControllerTest extends TestCase
         $this->assertDatabaseHas('tasks', $taskUpdateData);
     }
 
-    public function test_task_can_be_deleted_only_by_creator()
+    public function testTaskCanBeDeletedOnlyByCreator()
     {
         $user = User::factory()->create();
         $task = Task::factory()->create();
@@ -98,6 +98,5 @@ class TaskControllerTest extends TestCase
 
         $response->assertRedirect(route('tasks.index'));
         $this->assertDatabaseMissing('tasks', $task->only('id'));
-
     }
 }

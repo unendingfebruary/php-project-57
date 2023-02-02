@@ -8,7 +8,6 @@ use Illuminate\Database\Seeder;
 
 class TaskStatusSeeder extends Seeder
 {
-
     /**
      * @return void
      */
