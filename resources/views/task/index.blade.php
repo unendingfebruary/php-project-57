@@ -72,7 +72,7 @@
                         </td>
                         <td>{{ $task->creator->name }}</td>
                         <td>{{ $task->executor->name ?? '' }}</td>
-                        <td>{{ $task->created_at->format('d-m-Y') }}</td>
+                        <td>{{ $task->created_at->format('d.m.Y') }}</td>
                         <td>
                             @can('delete', $task)
                                 <x-delete-link :href="route('tasks.destroy', $task)">

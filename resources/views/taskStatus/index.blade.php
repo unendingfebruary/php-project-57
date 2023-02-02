@@ -30,7 +30,7 @@
                 <tr class="border-b border-dashed text-left">
                     <td>{{ $status->id }}</td>
                     <td>{{ $status->name }}</td>
-                    <td>{{ $status->created_at->format('d-m-Y') }}</td>
+                    <td>{{ $status->created_at->format('d.m.Y') }}</td>
                     <td>
                         @can('delete', App\Models\TaskStatus::class)
                             <x-delete-link :href="route('task_statuses.destroy', $status)">
