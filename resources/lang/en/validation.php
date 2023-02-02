@@ -165,6 +165,9 @@ return [
         'status_id' => [
             'required' => 'This is a required field.',
         ],
+        'password' => [
+            'min' => 'Password must be at least 8 characters long.',
+        ],
     ],
 
     /*
