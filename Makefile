@@ -9,7 +9,6 @@ install:
 	cp -n .env.example .env
 	php artisan key:generate
 	php artisan migrate --force
-	php artisan db:seed --force
 	npm ci
 	npm run build
 
