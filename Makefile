@@ -11,7 +11,6 @@ install:
 	php artisan migrate --force
 	npm ci
 	npm run build
-	php artisan config:cache
 
 lint:
 	composer exec --verbose phpcs -- --standard=PSR12 app database routes tests
